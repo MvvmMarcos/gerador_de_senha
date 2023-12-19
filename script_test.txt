@@ -1,0 +1,35 @@
+ <script>
+    //tamanho inicial do password
+        let passwordLength = 16;
+        const inputEl = document.querySelector("#password");
+        //generate a password
+        function generatePassword(){
+            const chars ="abcdefghjklmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVXYWZ123456789!@&*()[]";
+            let password = "";
+
+            // for(let i = 0; i < 8;i++){
+            for(let i = 0; i < passwordLength;i++){
+                const randomNumber = Math.floor(Math.random() * chars.length);
+                //substring faz um recorte
+                password += chars.substring(randomNumber, randomNumber + 1);
+                // console.log(password);
+            }
+            // return password;
+            // const inputEl = document.querySelector("#password").value = password;
+            inputEl.value = password;
+        }
+        function copy(){
+            navigator.clipboard.writeText(inputEl.value)
+        }
+
+        const passwordLengthEl = document.querySelector("#password-length");
+        passwordLengthEl.addEventListener("input", function(){
+            passwordLength = passwordLengthEl.value;
+            // console.log(passwordLength)
+            generatePassword();
+        })
+        const copyButtonEl = document.querySelector("#copy");
+        copyButtonEl.addEventListener("click", copy)
+        generatePassword();
+        
+ </script> 
